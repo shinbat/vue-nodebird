@@ -1,6 +1,6 @@
 <template>
 		<v-list>
-			<v-col v-for="l in list" :key="l.id" cols="12" md="4" style="display: inline-block">
+			<v-col v-for="l in users" :key="l.id" cols="12" md="4" style="display: inline-block">
 				<v-list-item>
 					<v-list-item-avatar color="indigo">
 						<span>{{l.nickname[0]}}</span>
@@ -17,25 +17,27 @@
 </template>
 <script>
 export default {
-	data() {
-		return {
-
-		};
-	},
-	computed: {
-		list() {
-			return this.$store.state.users.followerList;
+	props: {
+		users: {
+			type: Array,
+			required: true,
+		},
+		remove: {
+			type: String,
+			required: true,
 		},
 	},
 	methods: {
-		onRemoveUser(id) {
-			console.log('nickname',id);	
-			this.$store.dispatch('users/removeFollower', {
-				id: id,
-			});
+		onRemoveUser(id, remove) {
+			console.log('this.remove', this.remove);	
+			if (this.remove === 'removeFollower') {
+				this.$store.dispatch('users/removeFollower', { id	});
+			};
+			if (this.remove === 'removeFollowing') {
+				this.$store.dispatch('users/removeFollowing', { id	});
+			};
 		},
-	}
-	
+	},	
 }
 </script>
 

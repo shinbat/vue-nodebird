@@ -18,13 +18,13 @@
 			<v-card style="margin-bottom: 20px">
 				<v-container>
 					<v-subheader>팔로잉</v-subheader>
-					<following-list />
+					<follow-list :users="followingList" :remove="'removeFollowing'" />
 				</v-container>
 			</v-card>
 			<v-card style="margin-bottom: 20px">
 				<v-container>
 					<v-subheader>팔로워</v-subheader>
-					<follow-list />
+					<follow-list :users="followerList" :remove="'removeFollower'" />
 				</v-container>
 			</v-card>
 		</v-container>
@@ -33,12 +33,10 @@
 
 <script> 
 import FollowList from '~/components/FollowList';
-import FollowingList from '~/components/FollowList';
 
 export default {
 	components: {
 		FollowList,
-		FollowingList,
 	},	
 	// layout: 'admin',
 	data()	{
@@ -49,6 +47,14 @@ export default {
 				v => !!v || '닉네임을 입력하세요'	,
 			],
 		};
+	},
+	computed: {
+		followingList() {
+			return this.$store.state.users.followingList;
+		},
+		followerList() {
+			return this.$store.state.users.followerList;
+		},
 	},
 	methods: {
 		onChangeNickname() {
