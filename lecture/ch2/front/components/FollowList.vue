@@ -28,13 +28,12 @@ export default {
 		},
 	},
 	methods: {
-		onRemoveUser(id, remove) {
-			console.log('this.remove', this.remove);	
+		onRemoveUser(id) {
 			if (this.remove === 'removeFollower') {
 				this.$store.dispatch('users/removeFollower', { id	});
 			};
 			if (this.remove === 'removeFollowing') {
-				this.$store.dispatch('users/removeFollowing', { id	});
+				this.$store.dispatch('users/removeFollowing', { id });
 			};
 		},
 	},	

@@ -4,10 +4,10 @@
 			<v-card-text>
 				<div>
 					<span>
-						<h3>{{post.User.nickname}}</h3> 
+						<h3><nuxt-link :to="'/user/' + post.id">{{post.User.nickname}}</nuxt-link></h3> 
 						<v-btn dark color="amber" @click="onFollow" absolute right>팔로우</v-btn> 
 					</span>
-					<nuxt-link :to="'/post/' + post.id">{{post.content}}</nuxt-link>
+					<div>{{post.content}}</div>
 				</div>
 			</v-card-text>
 			<v-card-actions>
@@ -89,5 +89,8 @@ export default {
 };
 </script>
 <style scoped>
-
-</style>
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+</style> 
