@@ -64,14 +64,36 @@ export const actions = {
 			email: payload.email,
 			nickname: payload.nickname,
 			password: payload.password,	
+		}).then((data) => {
+			console.log(data);
+			commit('setMe', payload);
+		}).catch((err) => {
+			console.error(err);
 		});
-		commit('setMe', payload);
 	},
 	logIn({ commit }, payload) {
-		commit('setMe', payload);
+		this.$axios.post('http://localhost:3085/user/login', {
+			email: payload.email,
+			nickname: payload.nickname,
+			password: payload.password,
+		}, {
+			withCredentials: true,
+		}).then((res) => {
+			console.log(res);
+			commit('setMe', res.data);
+		}).catch((err) => {
+			console.error(err);
+		});
 	},
-	logOut({ commit }) {
-		commit('setMe', null);
+	logOut({ commit }, payload) {
+		this.$axios.post('http://localhost:3085/user/logout', {}, {
+			withCredentials: true,		
+		}).then((data) => {
+			console.log(data);
+			commit('setMe', null);
+		}).catch((err) => {
+			console.error(err);
+		});
 	},
 	changeNickname({ commit }, payload) {
 		commit('changeNickname', payload);
