@@ -31,13 +31,13 @@ export const mutations = {
 	addFollower(state, payload) {
 		state.followerList.push(payload);
 	},
-	removeFollowing(state, payload) {
-		const index = state.followingList.findIndex(v => v.id === payload.id);
-		state.followingList.splice(index, 1);
-	},
 	removeFollower(state, payload) {
 		const index = state.followerList.findIndex(v => v.id === payload.id);
 		state.followerList.splice(index, 1);
+	},
+	removeFollowing(state, payload) {
+		const index = state.me.Followings.findIndex(v => v.id === payload.userId);
+		state.me.Followings.splice(index, 1);
 	},
 	loadFollowings(state, payload) {
 		const diff = totalFollowings - state.followingList.length;
@@ -57,12 +57,15 @@ export const mutations = {
 		state.followerList = state.followerList.concat(fakeUsers);
 		state.hasMoreFollower = fakeUsers.length === limit;
 	},
+	following(state, payload) {
+		state.me.Followings.push({ id: payload.userId });
+	},
 };
 
 export const actions = {
 	loadUser({ state, commit }) {
 		console.log('loadUser..');
-		this.$axios.get('http://localhost:3085/user', {
+		this.$axios.get('/user', {
 			withCredentials: true,
 		})
 			.then((res) => {
@@ -74,7 +77,7 @@ export const actions = {
 			});
 	},
 	signUp({ commit, dispatch, state, rootState, getters, rootGetters }, payload) {
-		this.$axios.post('http://localhost:3085/user', {
+		this.$axios.post('/user', {
 			email: payload.email,
 			nickname: payload.nickname,
 			password: payload.password,	
@@ -86,7 +89,7 @@ export const actions = {
 		});
 	},
 	logIn({ commit }, payload) {
-		this.$axios.post('http://localhost:3085/user/login', {
+		this.$axios.post('/user/login', {
 			email: payload.email,
 			password: payload.password,
 		}, {
@@ -99,7 +102,7 @@ export const actions = {
 		});
 	},
 	logOut({ commit }) {
-		this.$axios.post('http://localhost:3085/user/logout', {}, {
+		this.$axios.post('/user/logout', {}, {
 			withCredentials: true,		
 		}).then((data) => {
 			console.log(data);
@@ -134,4 +137,32 @@ export const actions = {
 			commit('loadFollowings');
 		}
 	},
-}
+	follow({ commit }, payload) {
+		this.$axios.post(`/user/${payload.userId}/follow`, {}, {
+			withCredentials: true,
+		})
+			.then((res) =>{
+				commit('following', {
+					userId: payload.userId,
+				});
+			})
+			.catch((err) => {
+				console.error(err);
+				next(err);
+			});
+	},
+	unfollow({ commit }, payload) {
+		this.$axios.delete(`/user/${payload.userId}/follow`, {
+			withCredentials: true,
+		})
+		.then((res) =>{
+			commit('removeFollowing', {
+				userId: payload.userId,
+			});
+		})
+		.catch((err) => {
+			console.error(err);
+			next(err);
+		});
+	},
+};

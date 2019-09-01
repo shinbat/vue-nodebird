@@ -35,6 +35,9 @@ export default {
 	fetch({ store }) {
 		return store.dispatch('posts/loadPosts');
 	},
+	asyncData() {
+		return {};
+	},
 	mounted() {
 		window.addEventListener('scroll', this.onScroll);
 	},

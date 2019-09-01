@@ -12,6 +12,14 @@ module.exports = () => {
 				where: { id },
 				attributes: ['id', 'email', 'nickname'],
         include: [{
+					model: db.User,
+					as: 'Followings',
+					attributes: ['id'],
+				}, {
+					model: db.User,
+					as: 'Followers',
+					attributes: ['id'],
+				}, {
           model: db.Post,
           as: 'Posts',
 					attributes: ['id'],
