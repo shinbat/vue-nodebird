@@ -11,7 +11,11 @@ module.exports = () => {
 			const user = await db.User.findOne({ 
 				where: { id },
 				attributes: ['id', 'email', 'nickname'],
-        include: [{
+        include: [ {
+          model: db.Post,
+          // as: 'Posts',
+					attributes: ['id'],
+				}, {
 					model: db.User,
 					as: 'Followings',
 					attributes: ['id'],
@@ -19,11 +23,7 @@ module.exports = () => {
 					model: db.User,
 					as: 'Followers',
 					attributes: ['id'],
-				}, {
-          model: db.Post,
-          as: 'Posts',
-					attributes: ['id'],
-				}],
+				},],
 			});
 			return done(null, user);	// req.user, req.isAuthenticated() === true,
 		} catch (err) {

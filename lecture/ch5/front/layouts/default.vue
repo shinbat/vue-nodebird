@@ -52,7 +52,7 @@ export default {
 	methods: {
 		onSearchHashtag() {
 			this.$router.push({
-				path: `/hashtag/${this.hashtag}`,
+				path: `/hashtag/${encodeURIComponent(this.hashtag)}`,
 			});
 			this.hashtag = '';
 		},

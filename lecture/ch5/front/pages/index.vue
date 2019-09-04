@@ -33,7 +33,7 @@ export default {
 		}
 	},
 	fetch({ store }) {
-		return store.dispatch('posts/loadPosts');
+		return store.dispatch('posts/loadPosts', { reset: true });
 	},
 	asyncData() {
 		return {};
