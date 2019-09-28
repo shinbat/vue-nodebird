@@ -35,7 +35,7 @@ export default {
 	components: {
 		FollowList,
 	},	
-	// layout: 'admin',
+	layout: 'admin',
 	data()	{
 		return {
 			name: 'Nuxt.js',
