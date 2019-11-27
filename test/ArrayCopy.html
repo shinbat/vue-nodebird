@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // https://youtu.be/o89xurAeWLQ
+    // sol1
+    // let a = [1, 2, 3, 4];
+    // let len = a.length;
+    
+    // let b = a;   // error
+    // a.push(5);  
+    // console.log(b);
+
+    // let b = [];
+
+    // for(let i=0; i<len; i++){
+    //     b.push(a[i]);
+    // };
+    // a.push(5);
+    // console.log(b);
+
+    // sol2
+    // let a = [1, 2, 3, 4];
+    // let len = a.length;
+    
+    // let b = Object.assign([], a);
+    
+    // console.dir(Object);
+    // console.log(b);
+
+    // ...    Spread operator
+    let a = [1, 2, 3, 4];
+    let b = [...a];     // swallow copy!!!
+    
+    a.push(5);
+    console.log(b);
+
+</script>    
+</body>
+</html>

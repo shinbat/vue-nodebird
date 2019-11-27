@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // https://youtu.be/dvPybpgk5Y4
+    // sol1
+    // let a = [1, 2, 5, 2, 1, 8];
+    // let b = [];
+    // let len = a.length;
+    
+    // for(let i=0; i < len; i++) {
+    //     if( b.indexOf(a[i]) === -1 ) {
+    //         b.push(a[i]);
+    //     }
+    // }
+    // console.log(b);
+    
+    // sol2
+    // let a = [1, 2, 5, 2, 1, 8];
+    // let b = [];
+    // let _temp;
+    // let len = a.length;
+    // a.sort();
+    
+    // for(let i=0; i<len; i++) {
+    //     if(a[i] !== _temp) {
+    //         _temp = a[i];
+    //         b.push(a[i]);
+    //     }
+    // };    
+    // console.log(b);
+
+    // sol3
+    // let a = [1, 2, 5, 2, 1, 8];
+    // obj = {}    ;
+    
+    // for(let i of a) {
+    //     obj[i] = true;
+    // }
+    
+    // let b = Object.keys(obj);
+    // console.log(b);   
+
+    // sol4
+    let a = [1, 2, 5, 2, 1, 8];
+    let b = [... new Set(a)];
+    console.log(b);
+
+
+</script>    
+</body>
+</html>

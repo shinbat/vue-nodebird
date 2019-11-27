@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// youtu.be/efS_i8hvTRo  
+// n = x * y
+// x <= y
+// x*x <= x*y
+// x <= sqrt(n)  
+let isPrime = (n) => {
+    if(n===2) return true;
+    if( !Number.isInteger(n) || n<2 || !n%2 ) return false;
+
+    let cnt = 0;
+    for(let i=3; i<= Math.sqrt(n) ; i++, i++) {
+        cnt++;
+        if(n%i === 0) {
+            console.log('cnt: ', cnt);
+            return false;
+        }
+    }
+    console.log('cnt: ', cnt);
+    return true;
+} 
+
+console.log(isPrime(10000000000000011));
+// for(let i=0; i<30; i++){
+//     if(isPrime(i)) {
+//         console.log(i);
+//     }
+// }
+    
+</script>        
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// youtu.be/SDyNVuTiP1s
+class Node {
+    constructor(value, next=null) {
+        this.value = value;
+        this.next = next;
+    };
+};  
+class List {
+    constructor() {
+        this.head = new Node('head');
+    };
+    find(value) {
+        let tmpNode = this.head;
+        while(tmpNode.value !== value) {
+            tmpNode = tmpNode.next;
+        }
+        return tmpNode;
+    };
+    insert(where, value) {
+        let whereToInsert = this.find(where);
+        let newNode = new Node(value, whereToInsert.next);
+        whereToInsert.next = newNode;
+    };
+    findPrev(value) {
+        let tmpNode = this.head;
+        while((tmpNode.next.value !== value) && (tmpNode.next.value !== null)) {
+            tmpNode = tmpNode.next;    
+        }
+        return tmpNode;
+    };
+    remove(value){
+        let tmpNode = this.findPrev(value);
+        if(tmpNode.next !== null) {
+            tmpNode.next = tmpNode.next.next;
+        }
+    };
+    print() {
+        let tmpNode = this.head;
+        while(tmpNode !== null) {
+            console.log(tmpNode.value);
+            tmpNode = tmpNode.next;
+        }
+    };
+};
+
+let newList = new List();
+newList.insert('head', 1);
+newList.insert(1, 2);
+newList.insert(2, 3);
+newList.insert(1, 4);
+newList.remove(3);
+newList.print();
+</script>    
+</body>
+</html>
