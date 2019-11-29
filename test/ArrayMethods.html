@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ArrayMethods</title>
+</head>
+<body>
+<script>
+// https://youtu.be/R8rmfD9Y5-c
+const items = [
+    {name: 'Bike',     price: 100},
+    {name: 'Tv',       price: 200},
+    {name: 'Album',    price: 10},
+    {name: 'Book',     price: 5},
+    {name: 'Phone',    price: 500},
+    {name: 'computer', price: 1000},
+    {name: 'Keyboard', price: 25},
+];
+const items2 = [1, 2, 3, 4, 5];
+
+const filterdItems = items.filter((item) => {
+    return item.price <=100;
+});
+const itemNames = items.map((item) => {
+    return item.name;
+});
+const foundItems = items.find((item) => {
+    return item.name === 'Book';
+});
+items.forEach((item) => {
+    // console.log(item.name);
+});
+// const hasInexpensiveItems = items.some((item) => {
+const hasInexpensiveItems = items.every((item) => {
+    return item.price <= 1000;
+});
+const total = items.reduce((currentTotal, item) => {
+    return item.price + currentTotal;
+}, 0);
+const includesTwo = items2.includes(2);
+
+// console.log(filterdItems);
+// console.log(itemNames);
+// console.log(foundItems);
+// console.log(hasInexpensiveItems);
+// console.log(total);
+console.log(includesTwo);
+</script>   
+</body>
+</html>
